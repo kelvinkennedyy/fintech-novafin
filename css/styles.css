@@ -1,0 +1,276 @@
+/* ==========================================================================
+   NovaFin — Identidade Visual e Estilos Complementares (CSS Separado)
+   Projeto Fintech | FIAP - Fase 4 (View)
+   ========================================================================== */
+
+:root {
+  --nf-bg: #f1f5f9;
+  --nf-surface: #ffffff;
+  --nf-sidebar: #0b1324;
+  --nf-sidebar-hover: rgba(255, 255, 255, 0.08);
+  --nf-primary: #059669;
+  --nf-primary-light: #10b981;
+  --nf-primary-soft: #ecfdf5;
+  --nf-accent: #0f766e;
+  --nf-text: #0f172a;
+  --nf-text-muted: #64748b;
+  --nf-border: #e2e8f0;
+  --nf-danger: #e11d48;
+  --nf-danger-soft: #fff1f2;
+  --nf-warning: #d97706;
+  --nf-warning-soft: #fffbeb;
+  --nf-info: #0284c7;
+  --nf-info-soft: #f0f9ff;
+  --nf-radius: 1rem;
+  --nf-shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
+  --nf-shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08), 0 4px 10px -6px rgba(15, 23, 42, 0.05);
+  --nf-font: "Plus Jakarta Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--nf-font);
+  background-color: var(--nf-bg);
+  color: var(--nf-text);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Acessibilidade: foco visível para navegação por teclado */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--nf-primary-light);
+  outline-offset: 2px;
+}
+
+/* Barra lateral (Desktop) */
+.nf-sidebar {
+  background: linear-gradient(180deg, #0b1324 0%, #0f172a 65%, #0c2627 100%);
+  border-right: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.nf-nav-item {
+  transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.nf-nav-item:hover {
+  background-color: var(--nf-sidebar-hover);
+  transform: translateX(2px);
+}
+
+.nf-nav-item--active {
+  background: linear-gradient(90deg, rgba(16, 185, 129, 0.22) 0%, rgba(16, 185, 129, 0.06) 100%);
+  border-left: 3px solid var(--nf-primary-light);
+  color: #ffffff;
+}
+
+/* Cartões de métricas e painéis */
+.nf-panel {
+  background-color: var(--nf-surface);
+  border: 1px solid var(--nf-border);
+  border-radius: var(--nf-radius);
+  box-shadow: var(--nf-shadow-sm);
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+}
+
+.nf-metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nf-shadow-md);
+  border-color: #cbd5e1;
+}
+
+/* Botões de ações rápidas */
+.nf-action-btn {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.nf-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--nf-shadow-md);
+}
+
+/* Cartão virtual Fintech */
+.nf-virtual-card {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 88% 18%, rgba(52, 211, 153, 0.32) 0%, transparent 45%),
+    radial-gradient(circle at 12% 90%, rgba(14, 165, 233, 0.24) 0%, transparent 50%),
+    linear-gradient(135deg, #0b1324 0%, #112438 52%, #0d4a44 100%);
+  box-shadow: 0 18px 34px -12px rgba(11, 19, 36, 0.45);
+}
+
+.nf-virtual-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.14) 0%, rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+
+/* Gráfico de barras mensal (CSS puro, sem JavaScript) */
+.nf-chart-grid {
+  background-image: repeating-linear-gradient(
+    to top,
+    #e2e8f0 0px,
+    #e2e8f0 1px,
+    transparent 1px,
+    transparent 44px
+  );
+}
+
+.nf-bar {
+  border-radius: 0.45rem 0.45rem 0.15rem 0.15rem;
+  transition: filter 0.2s ease, transform 0.2s ease;
+}
+
+.nf-bar:hover {
+  filter: brightness(1.08);
+  transform: scaleY(1.03);
+  transform-origin: bottom;
+}
+
+.nf-bar-income {
+  background: linear-gradient(180deg, #10b981 0%, #059669 100%);
+}
+
+.nf-bar-expense {
+  background: linear-gradient(180deg, #94a3b8 0%, #64748b 100%);
+}
+
+/* Barras de progresso */
+.nf-progress-track {
+  background-color: #e2e8f0;
+  border-radius: 9999px;
+  overflow: hidden;
+  height: 0.5rem;
+}
+
+.nf-progress-fill {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.4s ease;
+}
+
+.nf-progress-emerald {
+  background: linear-gradient(90deg, #059669 0%, #34d399 100%);
+}
+
+.nf-progress-sky {
+  background: linear-gradient(90deg, #0284c7 0%, #38bdf8 100%);
+}
+
+.nf-progress-teal {
+  background: linear-gradient(90deg, #0f766e 0%, #2dd4bf 100%);
+}
+
+/* Tabela de transações */
+.nf-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.nf-table thead th {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--nf-text-muted);
+  background-color: #f8fafc;
+  border-bottom: 1px solid var(--nf-border);
+  padding: 0.85rem 1rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.nf-table tbody td {
+  padding: 0.95rem 1rem;
+  border-bottom: 1px solid #f1f5f9;
+  vertical-align: middle;
+}
+
+.nf-table tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.nf-table tbody tr:hover {
+  background-color: #f8fafc;
+}
+
+.nf-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Badges semânticos */
+.nf-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.65rem;
+  border-radius: 9999px;
+  white-space: nowrap;
+}
+
+.nf-badge-income {
+  color: #047857;
+  background-color: var(--nf-primary-soft);
+}
+
+.nf-badge-expense {
+  color: #be123c;
+  background-color: var(--nf-danger-soft);
+}
+
+.nf-badge-investment {
+  color: #0369a1;
+  background-color: var(--nf-info-soft);
+}
+
+.nf-badge-pending {
+  color: #b45309;
+  background-color: var(--nf-warning-soft);
+}
+
+/* Barra de rolagem sutil */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Ajustes responsivos para telas mobile */
+@media (max-width: 1023px) {
+  body {
+    padding-bottom: 4.75rem;
+  }
+}
+
+.nf-mobile-nav {
+  background-color: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(10px);
+  border-top: 1px solid var(--nf-border);
+  box-shadow: 0 -6px 20px rgba(15, 23, 42, 0.06);
+}

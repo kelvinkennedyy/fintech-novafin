@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-label="Avatar do usuário Kelwin">
+  <defs>
+    <linearGradient id="avatarBg" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#0F172A" />
+      <stop offset="100%" stop-color="#0D9488" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="32" fill="url(#avatarBg)" />
+  <circle cx="32" cy="25" r="11" fill="#E2E8F0" />
+  <path d="M14 54c2.8-9.6 10.2-15 18-15s15.2 5.4 18 15" fill="#E2E8F0" />
+  <circle cx="51" cy="51" r="7" fill="#10B981" stroke="#FFFFFF" stroke-width="3" />
+</svg>

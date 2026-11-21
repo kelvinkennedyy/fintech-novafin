@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 38" fill="none" role="img" aria-label="Chip do cartão">
+  <defs>
+    <linearGradient id="chipGold" x1="0" y1="0" x2="50" y2="38" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#FDE68A" />
+      <stop offset="50%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#D97706" />
+    </linearGradient>
+  </defs>
+  <rect x="1" y="1" width="48" height="36" rx="7" fill="url(#chipGold)" stroke="#FEF3C7" stroke-width="1.2" />
+  <path d="M1 13h15M34 13h15M1 25h15M34 25h15M16 1v36M34 1v36" stroke="#92400E" stroke-opacity="0.55" stroke-width="1.3" />
+  <rect x="19" y="11" width="12" height="16" rx="2.5" fill="#FDE68A" fill-opacity="0.35" stroke="#92400E" stroke-opacity="0.55" stroke-width="1.2" />
+</svg>

@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="NovaFin — Dashboard de gestão financeira pessoal inteligente desenvolvido para o projeto Fintech FIAP." />
+  <title>NovaFin | Visão Geral Financeira</title>
+
+  <!-- Tipografia Google Fonts (com fallback nativo no CSS separado) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Framework Web: Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Folha de estilos separada -->
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body class="min-h-screen bg-slate-100 text-slate-900">
+  <div class="flex min-h-screen">
+    <!-- ===================================================================
+         SIDEBAR DE NAVEGAÇÃO (DESKTOP)
+         =================================================================== -->
+    <aside class="nf-sidebar hidden lg:flex lg:w-72 lg:flex-col lg:justify-between lg:fixed lg:inset-y-0 px-5 py-6 text-slate-200" aria-label="Menu principal">
+      <div>
+        <!-- Marca -->
+        <a href="#visao-geral" class="flex items-center gap-3 px-2 mb-8">
+          <img src="./assets/logo.svg" alt="NovaFin" class="w-10 h-10 rounded-xl shadow-md" />
+          <div>
+            <span class="block text-xl font-extrabold tracking-tight text-white">NovaFin</span>
+            <span class="block text-xs text-emerald-300/90 font-medium">Gestão Financeira</span>
+          </div>
+        </a>
+
+        <!-- Links de navegação -->
+        <nav class="space-y-1.5" aria-label="Seções da conta">
+          <p class="px-3 text-[11px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Menu Principal</p>
+
+          <a href="#visao-geral" class="nf-nav-item nf-nav-item--active flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold" aria-current="page">
+            <svg class="w-5 h-5 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+            </svg>
+            Visão Geral
+          </a>
+
+          <a href="#extrato" class="nf-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M7 10l5-5 5 5M17 14l-5 5-5-5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Extrato e Transações
+          </a>
+
+          <a href="#cartao" class="nf-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="2" y="5" width="20" height="14" rx="2.5" />
+              <path d="M2 10h20" />
+            </svg>
+            Meus Cartões
+          </a>
+
+          <a href="#fluxo" class="nf-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M3 3v18h18" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M7 14l4-4 4 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            Fluxo &amp; Investimentos
+          </a>
+
+          <a href="#metas" class="nf-nav-item flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium text-slate-300 hover:text-white">
+            <svg class="w-5 h-5 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="9" />
+              <circle cx="12" cy="12" r="5" />
+              <circle cx="12" cy="12" r="1.5" fill="currentColor" />
+            </svg>
+            Metas Financeiras
+          </a>
+        </nav>
+
+        <!-- Bloco de Impacto Social e Sustentabilidade -->
+        <div class="mt-8 rounded-2xl bg-emerald-500/10 border border-emerald-400/20 p-4">
+          <div class="flex items-center gap-2 text-emerald-300 text-xs font-bold uppercase tracking-wide mb-1.5">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M12 22c4.5-3.5 8-7.5 8-13a8 8 0 1 0-16 0c0 5.5 3.5 9.5 8 13Z" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M12 12V7" stroke-linecap="round" />
+            </svg>
+            Conta 100% Digital &amp; ESG
+          </div>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Seus extratos digitais já evitaram <strong class="text-white">48 folhas</strong> de papel este ano e apoiam projetos de educação financeira.
+          </p>
+        </div>
+      </div>
+
+      <!-- Perfil do Usuário -->
+      <div class="pt-5 border-t border-slate-700/60 flex items-center gap-3 px-2">
+        <img src="./assets/avatar.svg" alt="Foto de perfil de Kelwin" class="w-10 h-10 rounded-full ring-2 ring-emerald-400/50" />
+        <div class="min-w-0">
+          <p class="text-sm font-semibold text-white truncate">Kelwin Kennedy</p>
+          <p class="text-xs text-slate-400 truncate">Ag. 0001 • Cc. 48291-0</p>
+        </div>
+      </div>
+    </aside>
+
+    <!-- ===================================================================
+         CONTEÚDO PRINCIPAL
+         =================================================================== -->
+    <div class="flex-1 flex flex-col lg:pl-72 min-w-0">
+      <!-- Cabeçalho Superior (Mobile e Desktop) -->
+      <header class="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-slate-200 px-4 sm:px-6 lg:px-8 py-3.5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+          <!-- Marca visível no mobile/tablet -->
+          <div class="flex items-center gap-3">
+            <img src="./assets/logo.svg" alt="Logo NovaFin" class="w-9 h-9 rounded-xl lg:hidden" />
+            <div>
+              <h1 id="visao-geral" class="text-base sm:text-xl font-extrabold text-slate-900 tracking-tight">
+                Olá, Kelwin
+              </h1>
+              <p class="text-xs sm:text-sm text-slate-500">
+                Resumo da sua vida financeira • Novembro de 2026
+              </p>
+            </div>
+          </div>
+
+          <!-- Status da Conta e Perfil no Header -->
+          <div class="flex items-center gap-2.5 sm:gap-3">
+            <span class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
+              <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+              Conta protegida
+            </span>
+
+            <a href="#extrato" class="inline-flex items-center justify-center w-10 h-10 rounded-xl border border-slate-200 bg-white text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition" aria-label="Notificações financeiras">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </a>
+
+            <img src="./assets/avatar.svg" alt="Perfil de Kelwin" class="w-10 h-10 rounded-full border border-slate-200 lg:hidden" />
+          </div>
+        </div>
+      </header>
+
+      <!-- Área Principal -->
+      <main class="flex-1 px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+        <div class="max-w-7xl mx-auto space-y-6 sm:space-y-8">
+          <!-- ===============================================================
+               FAIXA DE AÇÕES RÁPIDAS
+               =============================================================== -->
+          <section aria-label="Ações rápidas" class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
+            <a href="#extrato" class="nf-action-btn flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-600 text-white shadow-sm hover:bg-emerald-700">
+              <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-white/15 shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 2L2 12l10 10 10-10L12 2Z" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold leading-tight">Área Pix</span>
+                <span class="block text-xs text-emerald-100 truncate">Instantâneo 24h</span>
+              </span>
+            </a>
+
+            <a href="#extrato" class="nf-action-btn flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 hover:border-emerald-300">
+              <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 text-emerald-700 shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold leading-tight">Transferir</span>
+                <span class="block text-xs text-slate-500 truncate">TED e contatos</span>
+              </span>
+            </a>
+
+            <a href="#cartao" class="nf-action-btn flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 hover:border-emerald-300">
+              <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 text-sky-700 shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M4 6h16M4 10h16M4 14h10M4 18h6" stroke-linecap="round" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold leading-tight">Pagar Boleto</span>
+                <span class="block text-xs text-slate-500 truncate">Código de barras</span>
+              </span>
+            </a>
+
+            <a href="#metas" class="nf-action-btn flex items-center gap-3 p-3.5 sm:p-4 rounded-2xl bg-white border border-slate-200 text-slate-800 hover:border-emerald-300">
+              <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-slate-100 text-teal-700 shrink-0">
+                <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M12 20V10M18 20V4M6 20v-4" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+              <span class="min-w-0">
+                <span class="block text-sm font-bold leading-tight">Investir</span>
+                <span class="block text-xs text-slate-500 truncate">CDB 105% CDI</span>
+              </span>
+            </a>
+          </section>
+
+          <!-- ===============================================================
+               CARDS DE RESUMO FINANCEIRO (KPIs)
+               =============================================================== -->
+          <section aria-label="Indicadores financeiros" class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 sm:gap-5">
+            <!-- Saldo Disponível -->
+            <article class="nf-panel nf-metric-card p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Saldo Disponível</span>
+                <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-emerald-50 text-emerald-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M18 12a2 2 0 0 0 0 4h4v-4h-4Z" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <p class="text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tracking-tight">R$ 12.480,50</p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="nf-badge nf-badge-income">+8,4%</span>
+                <span class="text-slate-500">vs. mês anterior</span>
+              </div>
+            </article>
+
+            <!-- Receitas do Mês -->
+            <article class="nf-panel nf-metric-card p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Receitas (Nov)</span>
+                <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-teal-50 text-teal-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 19V5M5 12l7-7 7 7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <p class="text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tracking-tight">R$ 6.850,00</p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="nf-badge nf-badge-income">2 entradas</span>
+                <span class="text-slate-500">Salário + rendimentos</span>
+              </div>
+            </article>
+
+            <!-- Despesas do Mês -->
+            <article class="nf-panel nf-metric-card p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Despesas (Nov)</span>
+                <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-rose-50 text-rose-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M12 5v14M19 12l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <p class="text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tracking-tight">R$ 2.940,75</p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="nf-badge nf-badge-income">-4,2%</span>
+                <span class="text-slate-500">dentro do orçamento</span>
+              </div>
+            </article>
+
+            <!-- Total Investido -->
+            <article class="nf-panel nf-metric-card p-5">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-500">Patrimônio Investido</span>
+                <span class="flex items-center justify-center w-9 h-9 rounded-xl bg-sky-50 text-sky-600">
+                  <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M3 17l6-6 4 4 8-8" stroke-linecap="round" stroke-linejoin="round" />
+                    <path d="M14 7h7v7" stroke-linecap="round" stroke-linejoin="round" />
+                  </svg>
+                </span>
+              </div>
+              <p class="text-2xl sm:text-[1.65rem] font-extrabold text-slate-900 tracking-tight">R$ 28.600,00</p>
+              <div class="mt-2.5 flex items-center gap-2 text-xs">
+                <span class="nf-badge nf-badge-investment">+R$ 312,40</span>
+                <span class="text-slate-500">rendimento no mês</span>
+              </div>
+            </article>
+          </section>
+
+          <!-- ===============================================================
+               FLUXO MENSAL + CARTÃO VIRTUAL
+               =============================================================== -->
+          <section class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Fluxo Financeiro Mensal -->
+            <article id="fluxo" class="nf-panel xl:col-span-8 p-5 sm:p-6 flex flex-col justify-between">
+              <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-slate-900">Fluxo Financeiro (Últimos 6 Meses)</h2>
+                  <p class="text-xs sm:text-sm text-slate-500">Comparativo mensal entre entradas e saídas</p>
+                </div>
+                <div class="flex items-center gap-4 text-xs font-semibold text-slate-600">
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-sm bg-emerald-500"></span>
+                    Receitas
+                  </span>
+                  <span class="inline-flex items-center gap-1.5">
+                    <span class="w-3 h-3 rounded-sm bg-slate-500"></span>
+                    Despesas
+                  </span>
+                </div>
+              </div>
+
+              <!-- Gráfico de barras construído em HTML + Tailwind + CSS puro -->
+              <div class="nf-chart-grid h-56 flex items-end justify-between gap-2 sm:gap-5 px-2 sm:px-4 pt-6 pb-2 border-b border-slate-200" role="img" aria-label="Gráfico comparando receitas e despesas de junho a novembro de 2026">
+                <!-- Jun -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[72%]" title="Junho - Receitas: R$ 5.800"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[48%]" title="Junho - Despesas: R$ 3.650"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-500">Jun</span>
+                </div>
+
+                <!-- Jul -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[78%]" title="Julho - Receitas: R$ 6.150"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[54%]" title="Julho - Despesas: R$ 4.020"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-500">Jul</span>
+                </div>
+
+                <!-- Ago -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[75%]" title="Agosto - Receitas: R$ 6.000"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[44%]" title="Agosto - Despesas: R$ 3.380"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-500">Ago</span>
+                </div>
+
+                <!-- Set -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[82%]" title="Setembro - Receitas: R$ 6.420"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[49%]" title="Setembro - Despesas: R$ 3.740"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-500">Set</span>
+                </div>
+
+                <!-- Out -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[84%]" title="Outubro - Receitas: R$ 6.500"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[42%]" title="Outubro - Despesas: R$ 3.070"></div>
+                  </div>
+                  <span class="text-xs font-semibold text-slate-500">Out</span>
+                </div>
+
+                <!-- Nov -->
+                <div class="flex-1 flex flex-col items-center gap-2 h-full justify-end">
+                  <div class="w-full max-w-[44px] flex items-end justify-center gap-1.5 h-44">
+                    <div class="nf-bar nf-bar-income w-1/2 h-[92%]" title="Novembro - Receitas: R$ 6.850"></div>
+                    <div class="nf-bar nf-bar-expense w-1/2 h-[38%]" title="Novembro - Despesas: R$ 2.940"></div>
+                  </div>
+                  <span class="text-xs font-bold text-emerald-700">Nov</span>
+                </div>
+              </div>
+
+              <!-- Resumo do Gráfico -->
+              <div class="mt-5 grid grid-cols-1 sm:grid-cols-3 gap-3 pt-1">
+                <div class="rounded-xl bg-slate-50 border border-slate-200/70 px-4 py-3">
+                  <p class="text-xs text-slate-500 font-medium">Saldo Líquido (Nov)</p>
+                  <p class="text-base font-extrabold text-emerald-700 mt-0.5">+R$ 3.909,25</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 border border-slate-200/70 px-4 py-3">
+                  <p class="text-xs text-slate-500 font-medium">Taxa de Economia</p>
+                  <p class="text-base font-extrabold text-slate-900 mt-0.5">57,1% da renda</p>
+                </div>
+                <div class="rounded-xl bg-slate-50 border border-slate-200/70 px-4 py-3">
+                  <p class="text-xs text-slate-500 font-medium">Média de Gastos</p>
+                  <p class="text-base font-extrabold text-slate-900 mt-0.5">R$ 3.466,79 / mês</p>
+                </div>
+              </div>
+            </article>
+
+            <!-- Cartão Virtual e Limite -->
+            <article id="cartao" class="nf-panel xl:col-span-4 p-5 sm:p-6 flex flex-col justify-between gap-5">
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-slate-900">Cartão NovaFin</h2>
+                  <p class="text-xs text-slate-500">Virtual • Crédito e Débito</p>
+                </div>
+                <span class="nf-badge nf-badge-income">Ativo</span>
+              </div>
+
+              <!-- Visual do Cartão -->
+              <div class="nf-virtual-card rounded-2xl p-5 text-white flex flex-col justify-between min-h-[190px]">
+                <div class="flex items-center justify-between">
+                  <div class="flex items-center gap-2">
+                    <img src="./assets/logo.svg" alt="NovaFin" class="w-7 h-7 rounded-lg" />
+                    <span class="font-bold tracking-tight text-sm">NovaFin Black</span>
+                  </div>
+                  <svg class="w-6 h-6 text-emerald-300/90" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                    <path d="M8.5 14.5A3.5 3.5 0 0 1 8.5 9.5M12 17a7 7 0 0 1 0-10M15.5 19.5a10.5 10.5 0 0 1 0-15" stroke-linecap="round" />
+                  </svg>
+                </div>
+
+                <div class="my-4 flex items-center gap-3">
+                  <img src="./assets/card-chip.svg" alt="Chip EMV" class="w-10 h-8" />
+                  <p class="font-mono text-sm sm:text-base tracking-widest text-slate-100">
+                    •••• •••• •••• 4829
+                  </p>
+                </div>
+
+                <div class="flex items-end justify-between text-xs">
+                  <div>
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-300/80">Titular</span>
+                    <span class="font-semibold tracking-wide">KELWIN KENNEDY</span>
+                  </div>
+                  <div class="text-right">
+                    <span class="block text-[10px] uppercase tracking-wider text-slate-300/80">Validade</span>
+                    <span class="font-semibold">08/30</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Limite e Fatura -->
+              <div class="space-y-3">
+                <div class="flex items-center justify-between text-sm">
+                  <span class="text-slate-500 font-medium">Fatura atual</span>
+                  <span class="font-extrabold text-slate-900">R$ 1.420,90</span>
+                </div>
+
+                <div class="nf-progress-track" role="progressbar" aria-valuenow="18" aria-valuemin="0" aria-valuemax="100" aria-label="18 por cento do limite utilizado">
+                  <div class="nf-progress-fill nf-progress-emerald w-[18%]"></div>
+                </div>
+
+                <div class="flex items-center justify-between text-xs text-slate-500">
+                  <span>Disponível: <strong class="text-emerald-700">R$ 6.579,10</strong></span>
+                  <span>Limite: R$ 8.000,00</span>
+                </div>
+
+                <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+                  <span>Vencimento em <strong class="text-slate-700">10/12/2026</strong></span>
+                  <span class="text-emerald-700 font-semibold">Sem anuidade</span>
+                </div>
+              </div>
+            </article>
+          </section>
+
+          <!-- ===============================================================
+               ÚLTIMAS TRANSAÇÕES (TABELA) + METAS FINANCEIRAS
+               =============================================================== -->
+          <section class="grid grid-cols-1 xl:grid-cols-12 gap-6">
+            <!-- Tabela de Últimas Transações -->
+            <article id="extrato" class="nf-panel xl:col-span-8 overflow-hidden">
+              <div class="p-5 sm:p-6 border-b border-slate-200 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
+                <div>
+                  <h2 class="text-base sm:text-lg font-bold text-slate-900">Últimas Transações</h2>
+                  <p class="text-xs sm:text-sm text-slate-500">Movimentações recentes na conta corrente e cartão</p>
+                </div>
+                <span class="inline-flex items-center text-xs font-semibold text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full self-start sm:self-auto">
+                  6 lançamentos recentes
+                </span>
+              </div>
+
+              <div class="overflow-x-auto">
+                <table class="nf-table">
+                  <thead>
+                    <tr>
+                      <th scope="col">Descrição</th>
+                      <th scope="col">Categoria</th>
+                      <th scope="col">Data</th>
+                      <th scope="col">Status</th>
+                      <th scope="col" class="text-right">Valor</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-sm">
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Salário Mensal</div>
+                        <div class="text-xs text-slate-500">Crédito via Pix • Conta Principal</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-income">Receita</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">05/11/2026</td>
+                      <td class="text-emerald-700 font-medium whitespace-nowrap">Confirmado</td>
+                      <td class="text-right font-bold text-emerald-600 whitespace-nowrap">+ R$ 6.537,60</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Mercado Orgânico Brasil</div>
+                        <div class="text-xs text-slate-500">Cartão Virtual •••• 4829</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-expense">Alimentação</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">14/11/2026</td>
+                      <td class="text-emerald-700 font-medium whitespace-nowrap">Confirmado</td>
+                      <td class="text-right font-bold text-rose-600 whitespace-nowrap">- R$ 428,45</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Rendimento CDB Liquidez</div>
+                        <div class="text-xs text-slate-500">105% CDI • Crédito automático</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-investment">Investimento</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">15/11/2026</td>
+                      <td class="text-emerald-700 font-medium whitespace-nowrap">Liquidado</td>
+                      <td class="text-right font-bold text-emerald-600 whitespace-nowrap">+ R$ 312,40</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Mensalidade FIAP ON</div>
+                        <div class="text-xs text-slate-500">Boleto • Educação Superior</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-expense">Educação</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">16/11/2026</td>
+                      <td class="text-emerald-700 font-medium whitespace-nowrap">Confirmado</td>
+                      <td class="text-right font-bold text-rose-600 whitespace-nowrap">- R$ 1.190,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Aporte Meta Emergência</div>
+                        <div class="text-xs text-slate-500">Transferência interna agendada</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-investment">Reserva</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">18/11/2026</td>
+                      <td class="text-emerald-700 font-medium whitespace-nowrap">Aplicado</td>
+                      <td class="text-right font-bold text-slate-800 whitespace-nowrap">- R$ 1.000,00</td>
+                    </tr>
+
+                    <tr>
+                      <td>
+                        <div class="font-semibold text-slate-900">Energia Elétrica &amp; Internet</div>
+                        <div class="text-xs text-slate-500">Débito automático programado</div>
+                      </td>
+                      <td><span class="nf-badge nf-badge-pending">Agendado</span></td>
+                      <td class="text-slate-600 whitespace-nowrap">25/11/2026</td>
+                      <td class="text-amber-700 font-medium whitespace-nowrap">Pendente</td>
+                      <td class="text-right font-bold text-rose-600 whitespace-nowrap">- R$ 322,30</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </article>
+
+            <!-- Metas Financeiras -->
+            <article id="metas" class="nf-panel xl:col-span-4 p-5 sm:p-6 flex flex-col justify-between gap-5">
+              <div>
+                <h2 class="text-base sm:text-lg font-bold text-slate-900">Metas Financeiras</h2>
+                <p class="text-xs sm:text-sm text-slate-500 mb-5">Acompanhamento dos seus objetivos</p>
+
+                <div class="space-y-5">
+                  <!-- Meta 1 -->
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                      <span class="font-semibold text-slate-800">Reserva de Emergência</span>
+                      <span class="font-bold text-emerald-700">75%</span>
+                    </div>
+                    <div class="nf-progress-track" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" aria-label="Reserva de Emergência em 75 por cento">
+                      <div class="nf-progress-fill nf-progress-emerald w-[75%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                      <span>R$ 15.000,00 guardados</span>
+                      <span>Meta: R$ 20.000,00</span>
+                    </div>
+                  </div>
+
+                  <!-- Meta 2 -->
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                      <span class="font-semibold text-slate-800">Setup &amp; Estudos Dev</span>
+                      <span class="font-bold text-sky-700">70%</span>
+                    </div>
+                    <div class="nf-progress-track" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" aria-label="Setup e Estudos Dev em 70 por cento">
+                      <div class="nf-progress-fill nf-progress-sky w-[70%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                      <span>R$ 4.200,00 guardados</span>
+                      <span>Meta: R$ 6.000,00</span>
+                    </div>
+                  </div>
+
+                  <!-- Meta 3 -->
+                  <div class="space-y-2">
+                    <div class="flex items-center justify-between text-sm">
+                      <span class="font-semibold text-slate-800">Fundo Verde Sustentável</span>
+                      <span class="font-bold text-teal-700">43%</span>
+                    </div>
+                    <div class="nf-progress-track" role="progressbar" aria-valuenow="43" aria-valuemin="0" aria-valuemax="100" aria-label="Fundo Verde Sustentável em 43 por cento">
+                      <div class="nf-progress-fill nf-progress-teal w-[43%]"></div>
+                    </div>
+                    <div class="flex justify-between text-xs text-slate-500">
+                      <span>R$ 2.150,00 guardados</span>
+                      <span>Meta: R$ 5.000,00</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Dica de Saúde Financeira -->
+              <div class="rounded-2xl bg-emerald-50 border border-emerald-200/80 p-4">
+                <p class="text-xs font-bold uppercase tracking-wider text-emerald-800 mb-1">
+                  Saúde Financeira • Excelente
+                </p>
+                <p class="text-xs text-emerald-900/85 leading-relaxed">
+                  Você manteve seus gastos <strong>4,2% abaixo</strong> do mês passado e superou sua meta de poupança. Continue priorizando sua reserva!
+                </p>
+              </div>
+            </article>
+          </section>
+        </div>
+      </main>
+
+      <!-- Rodapé -->
+      <footer class="border-t border-slate-200 bg-white px-4 sm:px-6 lg:px-8 py-4 mt-4">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+          <p><strong class="text-slate-700">NovaFin</strong> • Projeto Fintech — FIAP (1TDSOR • Fase 4 - View)</p>
+          <p>Desenvolvido com HTML5, CSS3 separado e Tailwind CSS</p>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       NAVEGAÇÃO INFERIOR (MOBILE / TABLET)
+       ===================================================================== -->
+  <nav class="nf-mobile-nav fixed bottom-0 inset-x-0 z-30 lg:hidden px-2 py-2" aria-label="Navegação mobile">
+    <ul class="grid grid-cols-4 gap-1 text-center">
+      <li>
+        <a href="#visao-geral" class="flex flex-col items-center gap-1 py-1 text-emerald-700 font-semibold text-[11px]" aria-current="page">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+          </svg>
+          Início
+        </a>
+      </li>
+      <li>
+        <a href="#fluxo" class="flex flex-col items-center gap-1 py-1 text-slate-500 hover:text-emerald-700 font-medium text-[11px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M3 3v18h18" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M7 14l4-4 4 3 5-6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Fluxo
+        </a>
+      </li>
+      <li>
+        <a href="#cartao" class="flex flex-col items-center gap-1 py-1 text-slate-500 hover:text-emerald-700 font-medium text-[11px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect x="2" y="5" width="20" height="14" rx="2.5" />
+            <path d="M2 10h20" />
+          </svg>
+          Cartão
+        </a>
+      </li>
+      <li>
+        <a href="#extrato" class="flex flex-col items-center gap-1 py-1 text-slate-500 hover:text-emerald-700 font-medium text-[11px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M7 10l5-5 5 5M17 14l-5 5-5-5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          Extrato
+        </a>
+      </li>
+    </ul>
+  </nav>
+</body>
+</html>
